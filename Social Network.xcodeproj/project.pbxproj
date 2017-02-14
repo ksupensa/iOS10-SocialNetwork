@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DC0C5B9193735079D5AB45A2 /* Pods_Social_Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B3B26217CB8791BF3D262A /* Pods_Social_Network.framework */; };
+		F756A7A91E5302CA008EF502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F756A7A81E5302CA008EF502 /* Assets.xcassets */; };
 		F7FAF7F11E51CFF6005F82E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */; };
 		F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */; };
 		F7FAF7F61E51CFF6005F82E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF7F41E51CFF6005F82E6 /* Main.storyboard */; };
-		F7FAF7F81E51CFF6005F82E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF7F71E51CFF6005F82E6 /* Assets.xcassets */; };
 		F7FAF7FB1E51CFF6005F82E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF7F91E51CFF6005F82E6 /* LaunchScreen.storyboard */; };
 		F7FAF8051E51D2D3005F82E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF8041E51D2D3005F82E6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -20,11 +20,11 @@
 		0567F120BB19DEB497315E95 /* Pods-Social Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.release.xcconfig"; sourceTree = "<group>"; };
 		87DDC8976273A6B98BAE2A88 /* Pods-Social Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.debug.xcconfig"; sourceTree = "<group>"; };
 		92B3B26217CB8791BF3D262A /* Pods_Social_Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F756A7A81E5302CA008EF502 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Social Network/Assets.xcassets"; sourceTree = "<group>"; };
 		F7FAF7ED1E51CFF6005F82E6 /* Social Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F7FAF7F51E51CFF6005F82E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F7FAF7F71E51CFF6005F82E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Social Network/Assets.xcassets"; sourceTree = "<group>"; };
 		F7FAF7FA1E51CFF6005F82E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7FAF7FC1E51CFF6005F82E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Social Network/Info.plist"; sourceTree = "<group>"; };
 		F7FAF8041E51D2D3005F82E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			children = (
 				F7FAF7EF1E51CFF6005F82E6 /* Social Network */,
 				F7FAF7F41E51CFF6005F82E6 /* Main.storyboard */,
-				F7FAF7F71E51CFF6005F82E6 /* Assets.xcassets */,
+				F756A7A81E5302CA008EF502 /* Assets.xcassets */,
 				F7FAF7F91E51CFF6005F82E6 /* LaunchScreen.storyboard */,
 				F7FAF7FC1E51CFF6005F82E6 /* Info.plist */,
 				F7FAF7EE1E51CFF6005F82E6 /* Products */,
@@ -204,7 +204,7 @@
 			files = (
 				F7FAF7FB1E51CFF6005F82E6 /* LaunchScreen.storyboard in Resources */,
 				F7FAF8051E51D2D3005F82E6 /* GoogleService-Info.plist in Resources */,
-				F7FAF7F81E51CFF6005F82E6 /* Assets.xcassets in Resources */,
+				F756A7A91E5302CA008EF502 /* Assets.xcassets in Resources */,
 				F7FAF7F61E51CFF6005F82E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
