@@ -105,19 +105,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                 <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="0.87" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="continue"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="customField" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="test:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UMy-Wl-gsK"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="So2-zp-rls" customClass="CustomTF" customModule="Social_Network" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="40" width="240" height="30"/>
                                                 <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="0.87" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="customField" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="pwdFieldRKTapped:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="3nq-De-17F"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6z-yo-O6a" customClass="CustomBtn" customModule="Social_Network" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="80" width="240" height="30"/>
@@ -132,6 +138,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="customButton" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="signinBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ddP-rS-j3J"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -143,6 +152,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="gVj-ku-0b6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2WC-Da-EG6"/>
                             <constraint firstItem="gVj-ku-0b6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KbH-x5-Rac"/>
@@ -153,9 +163,21 @@
                             <constraint firstItem="LJF-Vo-9vo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r6q-Nx-ocx"/>
                             <constraint firstAttribute="trailing" secondItem="d0k-5g-LaN" secondAttribute="trailing" id="ynB-JM-XHX"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Y42-Uq-R1v" appends="YES" id="3CH-ea-N58"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="5HK-nM-osw" id="EbJ-ez-nvE"/>
+                        <outlet property="passwordField" destination="So2-zp-rls" id="OJy-5W-anz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" id="Y42-Uq-R1v">
+                    <connections>
+                        <action selector="viewTapped:" destination="BYZ-38-t0r" id="pwj-1A-VTo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-190" y="27"/>
         </scene>

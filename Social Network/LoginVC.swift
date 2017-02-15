@@ -12,27 +12,21 @@ import FacebookLogin
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var emailField: CustomTF!
+    @IBOutlet weak var passwordField: CustomTF!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginVC.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not to interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
-        
-        view.addGestureRecognizer(tap)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    /// Calls this function when the tap is recognized.
-    func dismissKeyboard() {
+    // Calls this function when the tap is recognized
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        dismissKeyBoard()
+    }
+    
+    private func dismissKeyBoard(){
         view.endEditing(true)
     }
     
@@ -62,11 +56,73 @@ class LoginVC: UIViewController {
     private func firebaseAuth(_ credentials: FIRAuthCredential){
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             if error == nil {
-                print("spencer: Sucessful authentication with Firebase")
+                let msg = "spencer: Sucessful authentication with Firebase"
+                self.successfulAuthentication(msg)
             } else {
-                print("spencer: Unable to authenticate with Firebase - \(error.debugDescription)")
+                let errorMsg = "spencer: Unable to authenticate with Firebase - \((error?.localizedDescription)!)"
+                self.failedAuthentication(errorMsg, usingFacebook: true)
             }
         })
+    }
+    
+    @IBAction func test(_ sender: CustomTF) {
+        if FormatCheckers.isValidEmail(testStr: sender.text!){
+            // Set focus to the text field.
+            sender.resignFirstResponder()
+            passwordField.becomeFirstResponder()
+        } else {
+            print("spencer: Invalid email format")
+        }
+    }
+    
+    @IBAction func signinBtnPressed(_ sender: CustomBtn) {
+        signWithEmail()
+    }
+    
+    @IBAction func pwdFieldRKTapped(_ sender: CustomTF) {
+        signWithEmail()
+    }
+    
+    private func signWithEmail(){
+        if FormatCheckers.isValidEmail(testStr: emailField.text!) {
+            if let email = emailField.text, let pwd = passwordField.text {
+                FIRAuth.auth()?.signIn(withEmail: email, password: pwd) {
+                    (user, error) in
+                    if error == nil {
+                        let msg = "spencer: Email authenticated with Firebase"
+                        self.successfulAuthentication(msg)
+                    } else {
+                        FIRAuth.auth()?.createUser(withEmail: email, password: pwd) {
+                            (user, error) in
+                            if error == nil {
+                                let msg = "spencer: New Email authenticated with Firebase"
+                                self.successfulAuthentication(msg)
+                            } else {
+                                let errorMsg = "spencer: Email authentication failed with Firebase - \((error?.localizedDescription)!)"
+                                self.failedAuthentication(errorMsg)
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            print("spencer: Email authentication failed - Invalid email format")
+            passwordField.becomeFirstResponder()
+        }
+    }
+    
+    private func successfulAuthentication(_ message: String = "spencer: Default Success"){
+        print(message + "\n")
+        dismissKeyBoard()
+    }
+    
+    private func failedAuthentication(_ message: String = "spencer: Default Fail", usingFacebook: Bool = false){
+        print(message + "\n")
+        
+        guard usingFacebook else {
+            passwordField.becomeFirstResponder()
+            return
+        }
     }
 }
 
