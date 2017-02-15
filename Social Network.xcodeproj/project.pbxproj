@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		DC0C5B9193735079D5AB45A2 /* Pods_Social_Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B3B26217CB8791BF3D262A /* Pods_Social_Network.framework */; };
+		F7504B251E532F3100D0DF55 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7504B241E532F3100D0DF55 /* CustomView.swift */; };
+		F7504B271E532FB500D0DF55 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7504B261E532FB500D0DF55 /* Constants.swift */; };
 		F756A7A91E5302CA008EF502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F756A7A81E5302CA008EF502 /* Assets.xcassets */; };
+		F79519641E541A9E006F44E8 /* FacebookBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519631E541A9E006F44E8 /* FacebookBtn.swift */; };
+		F79519661E541B0F006F44E8 /* ShadowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519651E541B0F006F44E8 /* ShadowDelegate.swift */; };
+		F79519681E542517006F44E8 /* CustomTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519671E542517006F44E8 /* CustomTF.swift */; };
+		F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519691E542D44006F44E8 /* CustomBtn.swift */; };
 		F7FAF7F11E51CFF6005F82E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */; };
 		F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */; };
 		F7FAF7F61E51CFF6005F82E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF7F41E51CFF6005F82E6 /* Main.storyboard */; };
@@ -20,7 +26,13 @@
 		0567F120BB19DEB497315E95 /* Pods-Social Network.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.release.xcconfig"; sourceTree = "<group>"; };
 		87DDC8976273A6B98BAE2A88 /* Pods-Social Network.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social Network.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social Network/Pods-Social Network.debug.xcconfig"; sourceTree = "<group>"; };
 		92B3B26217CB8791BF3D262A /* Pods_Social_Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7504B241E532F3100D0DF55 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		F7504B261E532FB500D0DF55 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F756A7A81E5302CA008EF502 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Social Network/Assets.xcassets"; sourceTree = "<group>"; };
+		F79519631E541A9E006F44E8 /* FacebookBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookBtn.swift; sourceTree = "<group>"; };
+		F79519651E541B0F006F44E8 /* ShadowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowDelegate.swift; sourceTree = "<group>"; };
+		F79519671E542517006F44E8 /* CustomTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTF.swift; sourceTree = "<group>"; };
+		F79519691E542D44006F44E8 /* CustomBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		F7FAF7ED1E51CFF6005F82E6 /* Social Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -59,6 +71,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F7504B231E532F1000D0DF55 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F7504B261E532FB500D0DF55 /* Constants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		F77AC2BB1E51D47800DCCEEE /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +97,10 @@
 		F77AC2BD1E51D48E00DCCEEE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F7504B241E532F3100D0DF55 /* CustomView.swift */,
+				F79519631E541A9E006F44E8 /* FacebookBtn.swift */,
+				F79519671E542517006F44E8 /* CustomTF.swift */,
+				F79519691E542D44006F44E8 /* CustomBtn.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -96,12 +120,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		F77AC2C01E51D4DB00DCCEEE /* Delegates */ = {
+		F77AC2C01E51D4DB00DCCEEE /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */,
+				F79519651E541B0F006F44E8 /* ShadowDelegate.swift */,
 			);
-			name = Delegates;
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 		F7FAF7E41E51CFF6005F82E6 = {
@@ -133,7 +158,8 @@
 				F77AC2BD1E51D48E00DCCEEE /* View */,
 				F77AC2BC1E51D48800DCCEEE /* Controller */,
 				F77AC2BB1E51D47800DCCEEE /* Network */,
-				F77AC2C01E51D4DB00DCCEEE /* Delegates */,
+				F77AC2C01E51D4DB00DCCEEE /* Delegate */,
+				F7504B231E532F1000D0DF55 /* Utilities */,
 				F77AC2BF1E51D4A000DCCEEE /* Resources */,
 			);
 			path = "Social Network";
@@ -264,8 +290,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7504B251E532F3100D0DF55 /* CustomView.swift in Sources */,
+				F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */,
+				F79519681E542517006F44E8 /* CustomTF.swift in Sources */,
+				F79519661E541B0F006F44E8 /* ShadowDelegate.swift in Sources */,
+				F79519641E541A9E006F44E8 /* FacebookBtn.swift in Sources */,
 				F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */,
 				F7FAF7F11E51CFF6005F82E6 /* AppDelegate.swift in Sources */,
+				F7504B271E532FB500D0DF55 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpencerForrest.Social-Network";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -411,6 +444,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.SpencerForrest.Social-Network";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
