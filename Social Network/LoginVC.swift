@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class LoginVC: UIViewController {
 
@@ -32,6 +34,10 @@ class LoginVC: UIViewController {
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+    
+    @IBAction func facebookBtnPressed(_ sender: FacebookBtn) {
+        
     }
 }
 
