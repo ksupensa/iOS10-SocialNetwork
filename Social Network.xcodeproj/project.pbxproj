@@ -16,6 +16,7 @@
 		F79519661E541B0F006F44E8 /* ShadowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519651E541B0F006F44E8 /* ShadowDelegate.swift */; };
 		F79519681E542517006F44E8 /* CustomTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519671E542517006F44E8 /* CustomTF.swift */; };
 		F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519691E542D44006F44E8 /* CustomBtn.swift */; };
+		F7A0E8581E554ADD001DCA70 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A0E8571E554ADD001DCA70 /* PostVC.swift */; };
 		F7FAF7F11E51CFF6005F82E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */; };
 		F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */; };
 		F7FAF7F61E51CFF6005F82E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF7F41E51CFF6005F82E6 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		F79519651E541B0F006F44E8 /* ShadowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowDelegate.swift; sourceTree = "<group>"; };
 		F79519671E542517006F44E8 /* CustomTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTF.swift; sourceTree = "<group>"; };
 		F79519691E542D44006F44E8 /* CustomBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
+		F7A0E8571E554ADD001DCA70 /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		F7FAF7ED1E51CFF6005F82E6 /* Social Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */,
+				F7A0E8571E554ADD001DCA70 /* PostVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */,
 				F79519681E542517006F44E8 /* CustomTF.swift in Sources */,
 				F79519661E541B0F006F44E8 /* ShadowDelegate.swift in Sources */,
+				F7A0E8581E554ADD001DCA70 /* PostVC.swift in Sources */,
 				F79519641E541A9E006F44E8 /* FacebookBtn.swift in Sources */,
 				F701A56A1E54AE4500FF9FE3 /* FormatCheckers.swift in Sources */,
 				F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */,

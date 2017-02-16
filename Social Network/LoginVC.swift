@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FacebookLogin
+import SwiftKeychainWrapper
 
 class LoginVC: UIViewController {
 
@@ -18,6 +19,12 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let uid = KeychainWrapper.standard.string(forKey: KEY_UID){
+            goToPostVC(uid)
+        }
     }
     
     // Calls this function when the tap is recognized
@@ -56,10 +63,10 @@ class LoginVC: UIViewController {
     private func firebaseAuth(_ credentials: FIRAuthCredential){
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             if error == nil {
-                let msg = "spencer: Sucessful authentication with Firebase"
-                self.successfulAuthentication(msg)
+                let msg = "spencer: Facebook authentication with Firebase"
+                self.successfulAuthentication(msg, user)
             } else {
-                let errorMsg = "spencer: Unable to authenticate with Firebase - \((error?.localizedDescription)!)"
+                let errorMsg = "spencer: Facebook authentication failed with Firebase - \((error?.localizedDescription)!)"
                 self.failedAuthentication(errorMsg, usingFacebook: true)
             }
         })
@@ -90,13 +97,13 @@ class LoginVC: UIViewController {
                     (user, error) in
                     if error == nil {
                         let msg = "spencer: Email authenticated with Firebase"
-                        self.successfulAuthentication(msg)
+                        self.successfulAuthentication(msg, user)
                     } else {
                         FIRAuth.auth()?.createUser(withEmail: email, password: pwd) {
                             (user, error) in
                             if error == nil {
                                 let msg = "spencer: New Email authenticated with Firebase"
-                                self.successfulAuthentication(msg)
+                                self.successfulAuthentication(msg, user)
                             } else {
                                 let errorMsg = "spencer: Email authentication failed with Firebase - \((error?.localizedDescription)!)"
                                 self.failedAuthentication(errorMsg)
@@ -111,9 +118,20 @@ class LoginVC: UIViewController {
         }
     }
     
-    private func successfulAuthentication(_ message: String = "spencer: Default Success"){
+    private func successfulAuthentication(_ message: String = "spencer: Default Success", _ user: FIRUser?){
+        
         print(message + "\n")
+        
         dismissKeyBoard()
+        
+        if let usr = user {
+            let result = KeychainWrapper.standard.set(usr.uid, forKey: KEY_UID)
+            print("spencer: 'Data saved in Keychain' status - \(result)")
+        } else {
+            print("spencer: KeychainWrapper failed since 'user' is nil")
+        }
+        
+        goToPostVC(user?.uid)
     }
     
     private func failedAuthentication(_ message: String = "spencer: Default Fail", usingFacebook: Bool = false){
@@ -124,5 +142,8 @@ class LoginVC: UIViewController {
             return
         }
     }
+    
+    private func goToPostVC(_ uid: String?){
+        performSegue(withIdentifier: "PostVC", sender: uid)
+    }
 }
-

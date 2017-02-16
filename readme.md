@@ -7,4 +7,5 @@ Creation of a simple Social App
   * Authentication
   * Database
   * Storage
-
+* FacebookLogin sdk
+* SwiftKeychainWrapper
