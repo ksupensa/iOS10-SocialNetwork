@@ -9,3 +9,5 @@ Creation of a simple Social App
   * Storage
 * FacebookLogin sdk
 * SwiftKeychainWrapper
+
+## All the content(code, resources, etc...) are for educational purpose only under 'fair use' and should be used as such.
