@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class FacebookBtn: UIButton, ShadowDelegate {
+class FacebookBtn: UIButton, ShadowDelegate, CircleDelegate {
     
     @IBInspectable var shadow: Bool = true {
         didSet {
@@ -21,7 +21,7 @@ class FacebookBtn: UIButton, ShadowDelegate {
     @IBInspectable var roundConers: Bool = true {
         didSet {
             if roundConers {
-                layer.cornerRadius = self.frame.width / 2
+                setCircle(roundConers)
             }
         }
     }

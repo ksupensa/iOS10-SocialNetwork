@@ -18,7 +18,7 @@ class PostVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func signOutBtnTapped(_ sender: Any) {
+    @IBAction func signOutBtnTapped(_ sender: UIButton) {
         let keyChainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("spencer: 'Remove uid from KeyChain' status - \(keyChainResult)")
         try! FIRAuth.auth()?.signOut()

@@ -17,6 +17,8 @@
 		F79519681E542517006F44E8 /* CustomTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519671E542517006F44E8 /* CustomTF.swift */; };
 		F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519691E542D44006F44E8 /* CustomBtn.swift */; };
 		F7A0E8581E554ADD001DCA70 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A0E8571E554ADD001DCA70 /* PostVC.swift */; };
+		F7DAF7931E55C9AC005D292C /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DAF7921E55C9AC005D292C /* CircleImageView.swift */; };
+		F7DAF7951E55C9FB005D292C /* CircleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DAF7941E55C9FB005D292C /* CircleDelegate.swift */; };
 		F7FAF7F11E51CFF6005F82E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */; };
 		F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */; };
 		F7FAF7F61E51CFF6005F82E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7FAF7F41E51CFF6005F82E6 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 		F79519671E542517006F44E8 /* CustomTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTF.swift; sourceTree = "<group>"; };
 		F79519691E542D44006F44E8 /* CustomBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		F7A0E8571E554ADD001DCA70 /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
+		F7DAF7921E55C9AC005D292C /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		F7DAF7941E55C9FB005D292C /* CircleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleDelegate.swift; sourceTree = "<group>"; };
 		F7FAF7ED1E51CFF6005F82E6 /* Social Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Social Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 				F79519631E541A9E006F44E8 /* FacebookBtn.swift */,
 				F79519671E542517006F44E8 /* CustomTF.swift */,
 				F79519691E542D44006F44E8 /* CustomBtn.swift */,
+				F7DAF7921E55C9AC005D292C /* CircleImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				F7FAF7F01E51CFF6005F82E6 /* AppDelegate.swift */,
 				F79519651E541B0F006F44E8 /* ShadowDelegate.swift */,
+				F7DAF7941E55C9FB005D292C /* CircleDelegate.swift */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -296,9 +302,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7DAF7931E55C9AC005D292C /* CircleImageView.swift in Sources */,
 				F7504B251E532F3100D0DF55 /* CustomView.swift in Sources */,
 				F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */,
 				F79519681E542517006F44E8 /* CustomTF.swift in Sources */,
+				F7DAF7951E55C9FB005D292C /* CircleDelegate.swift in Sources */,
 				F79519661E541B0F006F44E8 /* ShadowDelegate.swift in Sources */,
 				F7A0E8581E554ADD001DCA70 /* PostVC.swift in Sources */,
 				F79519641E541A9E006F44E8 /* FacebookBtn.swift in Sources */,
