@@ -10,11 +10,9 @@ import UIKit
 import FirebaseAuth
 import SwiftKeychainWrapper
 
-class PostVC: UIViewController {
-
+class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -23,5 +21,25 @@ class PostVC: UIViewController {
         print("spencer: 'Remove uid from KeyChain' status - \(keyChainResult)")
         try! FIRAuth.auth()?.signOut()
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func likeBtnTapped(_ sender: UIButton) {
+        // Change Like Img + Like Score
+    }
+}
+
+
+extension PostVC {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
+        return cell
     }
 }
