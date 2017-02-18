@@ -7,16 +7,34 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 import SwiftKeychainWrapper
 
 class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    internal var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         DataService.singleton.postRef.observe(.value, with: {
             (snapshot) in
-            print("spencer: \(snapshot.value!)")
+            
+            if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                // Clear older posts
+                self.posts = []
+                
+                for data in snaps {
+                    if let postContent = data.value as? [String:AnyObject] {
+                        let id = data.key
+                        let post = Post(id: id, postData: postContent)
+                        self.posts.append(post)
+                    }
+                }
+                self.tableView.reloadData()
+            }
         })
     }
     
@@ -38,10 +56,14 @@ extension PostVC {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let post = posts[indexPath.row]
+        print("spencer: \(post.caption)")
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
         return cell
     }

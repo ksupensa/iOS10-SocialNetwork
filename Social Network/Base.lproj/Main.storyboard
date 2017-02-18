@@ -419,6 +419,9 @@
                             <constraint firstItem="Ykc-jt-UoW" firstAttribute="top" secondItem="dfV-P2-2Vk" secondAttribute="bottom" constant="16" id="nia-cG-CNX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Ykc-jt-UoW" id="uF4-yo-cp6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhM-eV-QfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
