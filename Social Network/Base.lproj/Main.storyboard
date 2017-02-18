@@ -116,7 +116,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="customField" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="test:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UMy-Wl-gsK"/>
+                                                    <action selector="checkEmailFormat:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="xwt-68-ZOU"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="So2-zp-rls" customClass="CustomTF" customModule="Social_Network" customModuleProvider="target">

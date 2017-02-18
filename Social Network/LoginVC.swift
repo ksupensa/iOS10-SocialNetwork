@@ -64,7 +64,7 @@ class LoginVC: UIViewController {
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             if error == nil {
                 let msg = "spencer: Facebook authentication with Firebase"
-                self.successfulAuthentication(msg, user)
+                self.successfulAuthentication(msg, user, provider: credentials.provider)
             } else {
                 let errorMsg = "spencer: Facebook authentication failed with Firebase - \((error?.localizedDescription)!)"
                 self.failedAuthentication(errorMsg, usingFacebook: true)
@@ -72,7 +72,7 @@ class LoginVC: UIViewController {
         })
     }
     
-    @IBAction func test(_ sender: CustomTF) {
+    @IBAction func checkEmailFormat(_ sender: CustomTF) {
         if FormatCheckers.isValidEmail(testStr: sender.text!){
             // Set focus to the text field.
             sender.resignFirstResponder()
@@ -97,13 +97,13 @@ class LoginVC: UIViewController {
                     (user, error) in
                     if error == nil {
                         let msg = "spencer: Email authenticated with Firebase"
-                        self.successfulAuthentication(msg, user)
+                        self.successfulAuthentication(msg, user, provider: (user?.providerID)!)
                     } else {
                         FIRAuth.auth()?.createUser(withEmail: email, password: pwd) {
                             (user, error) in
                             if error == nil {
                                 let msg = "spencer: New Email authenticated with Firebase"
-                                self.successfulAuthentication(msg, user)
+                                self.successfulAuthentication(msg, user, provider: (user?.providerID)!)
                             } else {
                                 let errorMsg = "spencer: Email authentication failed with Firebase - \((error?.localizedDescription)!)"
                                 self.failedAuthentication(errorMsg)
@@ -118,11 +118,13 @@ class LoginVC: UIViewController {
         }
     }
     
-    private func successfulAuthentication(_ message: String = "spencer: Default Success", _ user: FIRUser?){
+    private func successfulAuthentication(_ message: String = "spencer: Default Success", _ user: FIRUser?, provider: String){
         
         print(message + "\n")
         
         dismissKeyBoard()
+        emailField.text = ""
+        passwordField.text = ""
         
         if let usr = user {
             let result = KeychainWrapper.standard.set(usr.uid, forKey: KEY_UID)
@@ -130,6 +132,10 @@ class LoginVC: UIViewController {
         } else {
             print("spencer: KeychainWrapper failed since 'user' is nil")
         }
+        
+        print("spencer: uid - \((user?.uid)!)")
+        
+        DataService.singleton.createDBUser(uid: (user?.uid)!, usrData: ["provider": provider])
         
         goToPostVC(user?.uid)
     }
@@ -145,5 +151,9 @@ class LoginVC: UIViewController {
     
     private func goToPostVC(_ uid: String?){
         performSegue(withIdentifier: "PostVC", sender: uid)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Implement this later to pass uid to PostVC
     }
 }
