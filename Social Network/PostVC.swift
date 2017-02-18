@@ -28,7 +28,6 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
 extension PostVC {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
