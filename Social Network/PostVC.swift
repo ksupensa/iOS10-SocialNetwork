@@ -14,6 +14,10 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        DataService.singleton.postRef.observe(.value, with: {
+            (snapshot) in
+            print("spencer: \(snapshot.value!)")
+        })
     }
     
     @IBAction func signOutBtnTapped(_ sender: UIButton) {
