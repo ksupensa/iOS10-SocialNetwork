@@ -22,7 +22,7 @@ class PostCell: UITableViewCell {
         // Initialization code
     }
     
-    func updateUI(_ usrName: String, postTxt: String, likeNumber: Int, profileImg: UIImage, likeImg: UIImage, postImg: UIImage){
+    func updateUI(_ usrName: String, postTxt: String, likeNumber: Int, profileImg: UIImage, likeImg: UIImage, postImg: UIImage) {
         
         usrNameLbl.text = usrName
         postTxtView.text = postTxt

@@ -8,16 +8,21 @@
 
 import Foundation
 
-class Post {
+struct Post {
     private var _id: String!
     private var _caption: String!
     private var _likes: Int!
     private var _imgUrl: String!
+    private var _senderId: String!
     
     var id: String {
         get {
             return _id
         }
+    }
+    
+    var senderId: String {
+        return _senderId
     }
     
     var caption: String {
@@ -47,6 +52,10 @@ class Post {
     init(id: String, postData: [String:AnyObject]){
         
         _id = id
+        
+        if let senderId = postData["senderId"] as? String {
+            _senderId = senderId
+        }
         
         if let caption = postData["caption"] as? String {
             _caption = caption

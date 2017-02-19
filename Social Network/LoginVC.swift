@@ -154,6 +154,13 @@ class LoginVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Implement this later to pass uid to PostVC
+        // Create mainUser and pass it to PostVC
+        if segue.identifier == "PostVC" {
+            if let destination = segue.destination as? PostVC {
+                if let uid = sender as? String {
+                    destination.mainUser = User(id: uid)
+                }
+            }
+        }
     }
 }
