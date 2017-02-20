@@ -96,13 +96,6 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		F77AC2BB1E51D47800DCCEEE /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Network;
-			sourceTree = "<group>";
-		};
 		F77AC2BC1E51D48800DCCEEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +181,6 @@
 				F77AC2BE1E51D49400DCCEEE /* Model */,
 				F77AC2BD1E51D48E00DCCEEE /* View */,
 				F77AC2BC1E51D48800DCCEEE /* Controller */,
-				F77AC2BB1E51D47800DCCEEE /* Network */,
 				F77AC2C01E51D4DB00DCCEEE /* Delegate */,
 				F7A1CD251E585CEE00585174 /* Services */,
 				F7504B231E532F1000D0DF55 /* Utilities */,

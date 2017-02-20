@@ -22,13 +22,25 @@ class PostCell: UITableViewCell {
         // Initialization code
     }
     
-    func updateUI(_ usrName: String, postTxt: String, likeNumber: Int, profileImg: UIImage, likeImg: UIImage, postImg: UIImage) {
+    func updateUI(_ usrName: String, postTxt: String, likeNumber: Int, heartImg: UIImage, postImg: UIImage = UIImage()) {
         
         usrNameLbl.text = usrName
         postTxtView.text = postTxt
         likeLbl.text = "\(likeNumber)"
-        profileImgView.image = profileImg
-        likeImgView.image = likeImg
-        profileImgView.image = profileImg
+        likeImgView.image = heartImg
+        profileImgView.image = UIImage()
+        postImgView.image = postImg
+    }
+    
+    func setUsrImage(img: UIImage){
+        profileImgView.image = img
+    }
+    
+    func setLikeImg(img: UIImage) {
+        likeImgView.image = img
+    }
+    
+    func setPostImg(img: UIImage) {
+        postImgView.image = img
     }
 }
