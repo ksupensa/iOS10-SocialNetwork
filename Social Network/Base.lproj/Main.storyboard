@@ -236,9 +236,10 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BXZ-i1-tyz">
                                         <rect key="frame" x="8" y="8" width="272" height="45"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="zbO-VK-e4f" customClass="CircleImageView" customModule="Social_Network" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="zbO-VK-e4f" customClass="CircleImageView" customModule="Social_Network" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" red="0.19215686274509802" green="0.10588235294117647" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="VAY-g1-Xjt"/>
                                                     <constraint firstAttribute="height" constant="45" id="uD8-Ht-6gA"/>
@@ -246,6 +247,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circle" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="MSn-si-XpH" appends="YES" id="rq7-mX-Nhx"/>
+                                                </connections>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0AQ-Rc-fmr">
                                                 <rect key="frame" x="55" y="0.0" width="162" height="45"/>
@@ -256,11 +260,15 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlo-OH-vxE">
                                                 <rect key="frame" x="227" y="0.0" width="45" height="45"/>
                                                 <color key="backgroundColor" red="0.93725490196078431" green="0.32549019607843138" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="WZC-de-tLP"/>
                                                     <constraint firstAttribute="width" constant="45" id="rCv-I6-I9T"/>
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="oru-fd-eeL" appends="YES" id="98Q-MW-gjd"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -300,19 +308,14 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="circle" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="lF9-0H-z7Z">
+                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="lF9-0H-z7Z">
                                                             <rect key="frame" x="246" y="8" width="50" height="50"/>
+                                                            <gestureRecognizers/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="FHb-o5-wLE"/>
                                                                 <constraint firstAttribute="width" constant="50" id="OgA-X3-irk"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYD-rq-x3g">
-                                                            <rect key="frame" x="246" y="8" width="50" height="50"/>
-                                                            <connections>
-                                                                <action selector="likeBtnTapped:" destination="vym-hL-cYL" eventType="touchUpInside" id="Dzm-bH-0SK"/>
-                                                            </connections>
-                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXf-C5-KFd">
                                                             <rect key="frame" x="66" y="21.5" width="172" height="23.5"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -359,8 +362,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="otF-1j-CTa" secondAttribute="trailing" constant="8" id="BE0-Lg-57d"/>
                                                         <constraint firstItem="hwR-fQ-Rh4" firstAttribute="top" secondItem="Vo0-To-k1c" secondAttribute="top" constant="8" id="DNt-b6-jHz"/>
                                                         <constraint firstAttribute="bottom" secondItem="4hF-jS-WlI" secondAttribute="bottom" constant="8" id="Dcr-HQ-UkP"/>
-                                                        <constraint firstItem="wYD-rq-x3g" firstAttribute="leading" secondItem="lF9-0H-z7Z" secondAttribute="leading" id="EuC-2o-cgY"/>
-                                                        <constraint firstItem="wYD-rq-x3g" firstAttribute="height" secondItem="lF9-0H-z7Z" secondAttribute="height" id="GWP-kZ-DJc"/>
                                                         <constraint firstItem="4hF-jS-WlI" firstAttribute="leading" secondItem="hax-gF-spQ" secondAttribute="trailing" constant="8" id="INR-PB-wgq"/>
                                                         <constraint firstItem="otF-1j-CTa" firstAttribute="leading" secondItem="Vo0-To-k1c" secondAttribute="leading" constant="8" id="LcQ-5X-rQz"/>
                                                         <constraint firstAttribute="trailing" secondItem="lF9-0H-z7Z" secondAttribute="trailing" constant="8" id="O0P-yM-GzW"/>
@@ -372,10 +373,8 @@
                                                         <constraint firstAttribute="trailing" secondItem="y0u-ER-Qgd" secondAttribute="trailing" constant="8" id="doe-1g-DM1"/>
                                                         <constraint firstItem="sXf-C5-KFd" firstAttribute="leading" secondItem="hwR-fQ-Rh4" secondAttribute="trailing" constant="8" id="hIj-xA-tZJ"/>
                                                         <constraint firstAttribute="bottom" secondItem="hax-gF-spQ" secondAttribute="bottom" constant="8" id="iqb-EU-P1u"/>
-                                                        <constraint firstItem="wYD-rq-x3g" firstAttribute="width" secondItem="lF9-0H-z7Z" secondAttribute="width" id="jMZ-NQ-xfo"/>
                                                         <constraint firstItem="hax-gF-spQ" firstAttribute="top" secondItem="y0u-ER-Qgd" secondAttribute="bottom" constant="8" id="lbg-bJ-f4R"/>
                                                         <constraint firstItem="4hF-jS-WlI" firstAttribute="top" secondItem="y0u-ER-Qgd" secondAttribute="bottom" constant="8" id="m7A-m0-J5b"/>
-                                                        <constraint firstItem="wYD-rq-x3g" firstAttribute="top" secondItem="lF9-0H-z7Z" secondAttribute="top" id="sUr-Bd-T10"/>
                                                         <constraint firstItem="y0u-ER-Qgd" firstAttribute="leading" secondItem="Vo0-To-k1c" secondAttribute="leading" constant="8" id="yTi-Dv-tS3"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -420,10 +419,21 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addImg" destination="zbO-VK-e4f" id="oKT-6e-UUx"/>
                         <outlet property="tableView" destination="Ykc-jt-UoW" id="uF4-yo-cp6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhM-eV-QfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MSn-si-XpH" userLabel="camera">
+                    <connections>
+                        <action selector="cameraImgTapped:" destination="vym-hL-cYL" id="Cmh-xD-7lN"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="oru-fd-eeL" userLabel="post">
+                    <connections>
+                        <action selector="postImgTapped:" destination="vym-hL-cYL" id="jp6-hV-StT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="624.79999999999995" y="24.7376311844078"/>
         </scene>

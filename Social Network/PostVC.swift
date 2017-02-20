@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var addImg: CircleImageView!
     @IBOutlet weak var tableView: UITableView!
     
     // mainUser is initialized in LoginVC using the "PostVC" segue
@@ -20,20 +21,32 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     internal var posts = [Post]()
     internal var users = [User]()
     
+    var imgPC: UIImagePickerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        DataService.singleton.dbRef.observe(.value, with: {
+        imgPC = UIImagePickerController()
+        imgPC.allowsEditing = true
+        imgPC.delegate = self
+        
+        DataService.singleton.userRef.observe(.value, with: {
             (snapshot) in
             
             print("\nspencer: Main user id - \(self.mainUser.id)")
             
-            let userSnapshot = snapshot.childSnapshot(forPath: "users")
-            self.observeUsers(snapshot: userSnapshot)
+            //let userSnapshot = snapshot.childSnapshot(forPath: "users")
+            self.observeUsers(snapshot: snapshot)
             
-            let postSnapshot = snapshot.childSnapshot(forPath: "posts")
-            self.obervePosts(snapshot: postSnapshot)
+            self.tableView.reloadData()
+        })
+        
+        DataService.singleton.postRef.observe(.value, with: {
+            (snapshot) in
+            
+            //let postSnapshot = snapshot.childSnapshot(forPath: "posts")
+            self.obervePosts(snapshot: snapshot)
             
             self.tableView.reloadData()
         })
@@ -80,8 +93,6 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-            } else {
-                return
             }
         }
     }
@@ -93,11 +104,17 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func likeBtnTapped(_ sender: UIButton) {
-        // Change Like Img + Like Score
+    @IBAction func postImgTapped(_ sender: UITapGestureRecognizer) {
+        print("spencer: Post button tapped")
+    }
+    
+    @IBAction func cameraImgTapped(_ sender: UITapGestureRecognizer) {
+        // Add an image to post
+        present(imgPC, animated: true, completion: nil)
     }
 }
 
+// TableView
 extension PostVC {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -139,3 +156,26 @@ extension PostVC {
         return PostCell()
     }
 }
+
+// PickerView
+extension PostVC {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
+            addImg.image = img
+        } else {
+            print("spencer: Invalid image selected")
+        }
+        
+        imgPC.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
