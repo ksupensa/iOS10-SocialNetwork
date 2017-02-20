@@ -14,5 +14,6 @@ Creation of a simple Social App
 * UIGestureRecognizer
 * UIImagePickerView
   * Edit an image
+* NSCache for images
 
 ### All the content(code, resources, etc...) are for educational purpose only under 'fair use'.
