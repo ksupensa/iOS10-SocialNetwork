@@ -267,7 +267,7 @@
                                                 </constraints>
                                                 <state key="normal" image="add-post"/>
                                                 <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="oru-fd-eeL" appends="YES" id="98Q-MW-gjd"/>
+                                                    <action selector="addPostBtnTapped:" destination="vym-hL-cYL" eventType="touchUpInside" id="CT7-fM-Dig"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -315,6 +315,9 @@
                                                                 <constraint firstAttribute="height" constant="50" id="FHb-o5-wLE"/>
                                                                 <constraint firstAttribute="width" constant="50" id="OgA-X3-irk"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outletCollection property="gestureRecognizers" destination="GQV-96-Pcf" appends="YES" id="9ae-8N-ofc"/>
+                                                            </connections>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXf-C5-KFd">
                                                             <rect key="frame" x="66" y="21.5" width="172" height="23.5"/>
@@ -420,6 +423,7 @@
                     </view>
                     <connections>
                         <outlet property="addImg" destination="zbO-VK-e4f" id="oKT-6e-UUx"/>
+                        <outlet property="captionTxtField" destination="0AQ-Rc-fmr" id="jTv-kY-iyB"/>
                         <outlet property="tableView" destination="Ykc-jt-UoW" id="uF4-yo-cp6"/>
                     </connections>
                 </viewController>
@@ -429,9 +433,9 @@
                         <action selector="cameraImgTapped:" destination="vym-hL-cYL" id="Cmh-xD-7lN"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="oru-fd-eeL" userLabel="post">
+                <tapGestureRecognizer id="GQV-96-Pcf" userLabel="like">
                     <connections>
-                        <action selector="postImgTapped:" destination="vym-hL-cYL" id="jp6-hV-StT"/>
+                        <action selector="likeImgTapped:" destination="vym-hL-cYL" id="LZt-Rx-1Yr"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
