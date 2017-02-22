@@ -20,6 +20,8 @@
 		F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79519691E542D44006F44E8 /* CustomBtn.swift */; };
 		F7A0E8581E554ADD001DCA70 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A0E8571E554ADD001DCA70 /* PostVC.swift */; };
 		F7A1CD271E585D1000585174 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A1CD261E585D1000585174 /* DataService.swift */; };
+		F7BC63D31E5D2E5300A97F25 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC63D21E5D2E5300A97F25 /* TableView.swift */; };
+		F7BC63D51E5D2EDB00A97F25 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BC63D41E5D2EDB00A97F25 /* ImagePickerView.swift */; };
 		F7DAF7931E55C9AC005D292C /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DAF7921E55C9AC005D292C /* CircleImageView.swift */; };
 		F7DAF7951E55C9FB005D292C /* CircleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DAF7941E55C9FB005D292C /* CircleDelegate.swift */; };
 		F7DB13B61E57FC81007AEBE2 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DB13B51E57FC81007AEBE2 /* PostCell.swift */; };
@@ -46,6 +48,8 @@
 		F79519691E542D44006F44E8 /* CustomBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBtn.swift; sourceTree = "<group>"; };
 		F7A0E8571E554ADD001DCA70 /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		F7A1CD261E585D1000585174 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		F7BC63D21E5D2E5300A97F25 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		F7BC63D41E5D2EDB00A97F25 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		F7DAF7921E55C9AC005D292C /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		F7DAF7941E55C9FB005D292C /* CircleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleDelegate.swift; sourceTree = "<group>"; };
 		F7DB13B51E57FC81007AEBE2 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -99,8 +103,8 @@
 		F77AC2BC1E51D48800DCCEEE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */,
-				F7A0E8571E554ADD001DCA70 /* PostVC.swift */,
+				F7BC63D01E5D2E2300A97F25 /* LoginVC */,
+				F7BC63D11E5D2E2F00A97F25 /* PostVC */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -151,6 +155,24 @@
 				F7A1CD261E585D1000585174 /* DataService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		F7BC63D01E5D2E2300A97F25 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				F7FAF7F21E51CFF6005F82E6 /* LoginVC.swift */,
+			);
+			name = LoginVC;
+			sourceTree = "<group>";
+		};
+		F7BC63D11E5D2E2F00A97F25 /* PostVC */ = {
+			isa = PBXGroup;
+			children = (
+				F7A0E8571E554ADD001DCA70 /* PostVC.swift */,
+				F7BC63D21E5D2E5300A97F25 /* TableView.swift */,
+				F7BC63D41E5D2EDB00A97F25 /* ImagePickerView.swift */,
+			);
+			name = PostVC;
 			sourceTree = "<group>";
 		};
 		F7FAF7E41E51CFF6005F82E6 = {
@@ -318,6 +340,7 @@
 				F7504B251E532F3100D0DF55 /* CustomView.swift in Sources */,
 				F7DB13B61E57FC81007AEBE2 /* PostCell.swift in Sources */,
 				F795196A1E542D44006F44E8 /* CustomBtn.swift in Sources */,
+				F7BC63D51E5D2EDB00A97F25 /* ImagePickerView.swift in Sources */,
 				F724BB3D1E59A95800A0770D /* User.swift in Sources */,
 				F79519681E542517006F44E8 /* CustomTF.swift in Sources */,
 				F7DAF7951E55C9FB005D292C /* CircleDelegate.swift in Sources */,
@@ -325,6 +348,7 @@
 				F7A0E8581E554ADD001DCA70 /* PostVC.swift in Sources */,
 				F79519641E541A9E006F44E8 /* FacebookBtn.swift in Sources */,
 				F7A1CD271E585D1000585174 /* DataService.swift in Sources */,
+				F7BC63D31E5D2E5300A97F25 /* TableView.swift in Sources */,
 				F784A2A01E5892E300104B89 /* Post.swift in Sources */,
 				F701A56A1E54AE4500FF9FE3 /* FormatCheckers.swift in Sources */,
 				F7FAF7F31E51CFF6005F82E6 /* LoginVC.swift in Sources */,

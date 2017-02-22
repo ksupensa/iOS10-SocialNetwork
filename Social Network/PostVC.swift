@@ -18,8 +18,9 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     // mainUser is initialized in LoginVC using the "PostVC" segue
     internal var mainUser: User!
-    
     internal var posts = [Post]()
+    
+    internal var allPosts = [Post]()
     internal var users = [User]()
     
     // Check if default image for adding post
@@ -38,19 +39,17 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         DataService.singleton.userRef.observe(.value, with: {
             (snapshot) in
             
-            //let userSnapshot = snapshot.childSnapshot(forPath: "users")
-            self.observeUsers(snapshot: snapshot)
+            print("spencer: 'Users' oberver triggered")
             
-            self.tableView.reloadData()
+            self.observeUsers(snapshot: snapshot)
         })
         
         DataService.singleton.postRef.observe(.value, with: {
             (snapshot) in
             
-            //let postSnapshot = snapshot.childSnapshot(forPath: "posts")
-            self.obervePosts(snapshot: snapshot)
+            print("spencer: 'Post' oberver triggered")
             
-            self.tableView.reloadData()
+            self.obervePosts(snapshot: snapshot)
         })
     }
     
@@ -73,6 +72,21 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     }
                 }
             }
+            
+            // Cleared Posts
+            self.posts = []
+            
+            // Add Posts
+            if let userPosts = self.mainUser.posts {
+                
+                for post in self.allPosts {
+                    if userPosts.contains(post.id) {
+                       self.posts.append(post)
+                    }
+                }
+            }
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -80,6 +94,7 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
             // Clear older posts
             self.posts = []
+            self.allPosts = []
             
             // Check if mainUser can access at least one post
             if let userPost = self.mainUser.posts {
@@ -87,22 +102,36 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     if let postContent = data.value as? [String:AnyObject] {
                         let id = data.key
                         
+                        // Append into allPosts[Post]
+                        let post = Post(id: id, postData: postContent)
+                        self.allPosts.append(post)
+                        
                         // If post not for MainUser go to next one
                         if userPost.contains(id){
-                            
-                            let post = Post(id: id, postData: postContent)
                             self.posts.append(post)
                         }
                     }
                 }
+                
+                self.tableView.reloadData()
             }
         }
     }
     
     @IBAction func signOutBtnTapped(_ sender: UIButton) {
+        // Remove all Firebase database obervers before logging out
+        DataService.singleton.dbRef.removeAllObservers()
+        DataService.singleton.userRef.removeAllObservers()
+        DataService.singleton.postRef.removeAllObservers()
+        
+        // Remove UID from Keychain
         let keyChainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("spencer: 'Remove uid from KeyChain' status - \(keyChainResult)")
+        
+        // Sign out Firebase
         try! FIRAuth.auth()?.signOut()
+        
+        // Go back to LoginVC
         dismiss(animated: true, completion: nil)
     }
     
@@ -113,13 +142,7 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         present(imgPC, animated: true, completion: nil)
     }
     
-    @IBAction func likeImgTapped(_ sender: UITapGestureRecognizer) {
-        print("spencer: like image tapped")
-    }
-    
     @IBAction func addPostBtnTapped(_ sender: UIButton) {
-        
-        print("spencer: post btn tapped")
         
         if isDefaultCameraImg {
             captionTxtField.placeholder = "Please select first an image"
@@ -141,6 +164,7 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             let metaData = FIRStorageMetadata()
             metaData.contentType = "image/jpeg"
             
+            // Upload Post image to Firebase storage
             DataService.singleton.uploadPostImage(name: imgId, data:imgData, metadata: metaData, completed: {
                 (metaData, error) in
                 if error == nil {
@@ -155,17 +179,35 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                         postAttributes["senderId"] = mainUserID as AnyObject?
                         postAttributes["likes"] = 0 as AnyObject?
                         
-                        //Update Post and User object in Firebase database
-                        DataService.singleton.postRef.child(imgId).updateChildValues(postAttributes)
-                        DataService.singleton.userRef.child(mainUserID).child("posts").updateChildValues([imgId:true])
-                        
-                        print("spencer: Updated imgUrl in Firebase database")
+                        //Update Post object in Firebase database
+                        DataService.singleton.postRef.child(imgId).updateChildValues(postAttributes, withCompletionBlock: {
+                            error, postRef in
+                            
+                            if error == nil {
+                                print("spencer: New post added into Firebase database")
+                                
+                                //Update User object in Firebase database
+                                let userPosts = DataService.singleton.userRef.child(mainUserID).child("posts")
+                                userPosts.updateChildValues([imgId:true],  withCompletionBlock: {
+                                    error, postRef in
+                                    
+                                    if error == nil {
+                                        print("spencer: User.imgUrl added into Firebase database")
+                                        
+                                    } else {
+                                        print("spencer: Failed to add User.imgUrl into Firebase database")
+                                    }
+                                })
+                                
+                            } else {
+                                print("spencer: Failed to add new post into Firebase database")
+                            }
+                        })
                         
                         // Update UI for next post
                         self.addImg.image = UIImage(named: "add-image")
                         self.captionTxtField.text = ""
                         self.dismissKeyboard()
-                        
                     }
                     
                 } else {
@@ -177,159 +219,6 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     private func dismissKeyboard(){
         view.endEditing(true)
-    }
-}
-
-
-// TableView Part
-extension PostVC {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-            // Get the right post
-            let post = posts[indexPath.row]
-            
-            // Look for the author of the post
-            var postAuthor: User = mainUser
-            for user in users {
-                if user.id == post.senderId {
-                    postAuthor = user
-                }
-            }
-            
-            // Get the right heartImg if main user like the post
-            let heartImg = getHeartImg(postId: post.id)
-            
-            // Set all the already known pieces of Information
-            cell.updateUI(postAuthor.id, postTxt: post.caption, likeNumber: post.likes, heartImg: heartImg)
-            
-            // Set the picture of the post in the cell
-            setImagInCell(cell: cell, indexPath: indexPath, url: post.imgUrl, imgType: .post)
-            
-            // Set the picture of the author in the cell
-            if let authorUrl = postAuthor.imgUrl{
-                setImagInCell(cell: cell, indexPath: indexPath, url: authorUrl, imgType: .user)
-            }
-            
-            return cell
-        }
-        
-        return PostCell()
-    }
-    
-    private func getHeartImg(postId: String) -> UIImage {
-        // Does mainUser like this post ?
-        var heartImg: UIImage
-        
-        if let mainUsrLike = mainUser.likes, mainUsrLike.contains(postId) {
-            heartImg = UIImage(named: "filled-heart")!
-        } else {
-            heartImg = UIImage(named: "empty-heart")!
-        }
-        
-        return heartImg
-    }
-    
-    private func setImagInCell(cell: PostCell, indexPath: IndexPath, url: String, imgType: ImageType){
-        // Cache used for Downloaded picures
-        let cache = DataService.singleton.imgCache
-        
-        // Set images if already in cache
-        if let img = cache.object(forKey: url as NSString) {
-            switch imgType {
-            case .post:
-                cell.setPostImg(img: img)
-            case .user:
-                cell.setUsrImage(img: img)
-            }
-            //print("spencer: Cache used to set image")
-        } else {
-            // Download images if not
-            //print("spencer: Downloading image")
-            downloadImg(indexPath: indexPath, imgUrl: url, imgType: imgType)
-        }
-    }
-    
-    private func downloadImg(indexPath: IndexPath, imgUrl: String?, imgType: ImageType) {
-        
-        let cache = DataService.singleton.imgCache
-        
-        // Check first if url exists
-        if let url = imgUrl {
-            // Download image from Firebase
-            let ref = FIRStorage.storage().reference(forURL: url)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: {
-                data, error in
-                
-                if error == nil {
-                    if let imgData = data {
-                        
-                        if let img = UIImage(data: imgData) {
-                            // Update Cell if still available
-                            self.updateCellUI(indexPath: indexPath, img: img, imgType: imgType)
-                            
-                            // Put image in cache
-                            cache.setObject(img, forKey: url as NSString)
-                            //print("spencer: Downloaded Image put in Cache")
-                        }
-                    }
-                } else {
-                    print("spencer: Failed to Download image from Firebase Storage")
-                }
-            })
-        }
-    }
-    
-    private func updateCellUI(indexPath: IndexPath, img: UIImage, imgType: ImageType){
-        
-        // Image updated if cell still available
-        if let cell = tableView.cellForRow(at: indexPath) as? PostCell {
-            switch imgType {
-            case .post:
-                cell.setPostImg(img: img)
-            case .user:
-                cell.setUsrImage(img: img)
-            }
-            //print("spencer: Firebase used to set image")
-        } else {
-            print("Spencer: Cell at index '\(indexPath.row)' is not available anymore")
-        }
-    }
-}
-
-
-// PickerView Part
-extension PostVC {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
-            addImg.image = img
-            isDefaultCameraImg = false
-        } else {
-            print("spencer: Invalid image selected")
-            isDefaultCameraImg = true
-        }
-        
-        imgPC.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // Put back default image
-        addImg.image = UIImage(named: "add-image")
-        isDefaultCameraImg = true
-        
-        // Clear caption text and placeholder
-        captionTxtField.text = ""
-        captionTxtField.placeholder = ""
-        
-        imgPC.dismiss(animated: true, completion: nil)
     }
 }
 
