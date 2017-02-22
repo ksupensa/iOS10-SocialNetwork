@@ -315,9 +315,6 @@
                                                                 <constraint firstAttribute="height" constant="50" id="FHb-o5-wLE"/>
                                                                 <constraint firstAttribute="width" constant="50" id="OgA-X3-irk"/>
                                                             </constraints>
-                                                            <connections>
-                                                                <outletCollection property="gestureRecognizers" destination="GQV-96-Pcf" appends="YES" id="9ae-8N-ofc"/>
-                                                            </connections>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXf-C5-KFd">
                                                             <rect key="frame" x="66" y="21.5" width="172" height="23.5"/>
@@ -431,11 +428,6 @@
                 <tapGestureRecognizer id="MSn-si-XpH" userLabel="camera">
                     <connections>
                         <action selector="cameraImgTapped:" destination="vym-hL-cYL" id="Cmh-xD-7lN"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="GQV-96-Pcf" userLabel="like">
-                    <connections>
-                        <action selector="likeImgTapped:" destination="vym-hL-cYL" id="LZt-Rx-1Yr"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
