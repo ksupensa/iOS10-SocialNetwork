@@ -173,36 +173,7 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     
                     if let downloadUrl = metaData?.downloadURL()?.absoluteString {
                         
-                        var postAttributes = [String:AnyObject]()
-                        postAttributes["imgUrl"] = downloadUrl as AnyObject?
-                        postAttributes["caption"] = caption as AnyObject?
-                        postAttributes["senderId"] = mainUserID as AnyObject?
-                        postAttributes["likes"] = 0 as AnyObject?
-                        
-                        //Update Post object in Firebase database
-                        DataService.singleton.postRef.child(imgId).updateChildValues(postAttributes, withCompletionBlock: {
-                            error, postRef in
-                            
-                            if error == nil {
-                                print("spencer: New post added into Firebase database")
-                                
-                                //Update User object in Firebase database
-                                let userPosts = DataService.singleton.userRef.child(mainUserID).child("posts")
-                                userPosts.updateChildValues([imgId:true],  withCompletionBlock: {
-                                    error, postRef in
-                                    
-                                    if error == nil {
-                                        print("spencer: User.imgUrl added into Firebase database")
-                                        
-                                    } else {
-                                        print("spencer: Failed to add User.imgUrl into Firebase database")
-                                    }
-                                })
-                                
-                            } else {
-                                print("spencer: Failed to add new post into Firebase database")
-                            }
-                        })
+                        self.postImgToFirebaseDB(url: downloadUrl, description: caption, userId: mainUserID, imgId: imgId)
                         
                         // Update UI for next post
                         self.addImg.image = UIImage(named: "add-image")
@@ -215,6 +186,40 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 }
             })
         }
+    }
+    
+    private func postImgToFirebaseDB(url: String, description: String, userId: String, imgId: String) {
+        
+        var postAttributes = [String:AnyObject]()
+        postAttributes["imgUrl"] = url as AnyObject?
+        postAttributes["caption"] = description as AnyObject?
+        postAttributes["senderId"] = userId as AnyObject?
+        postAttributes["likes"] = 0 as AnyObject?
+        
+        //Update Post object in Firebase database
+        DataService.singleton.postRef.child(imgId).updateChildValues(postAttributes, withCompletionBlock: {
+            error, postRef in
+            
+            if error == nil {
+                print("spencer: New post added into Firebase database")
+                
+                //Update User object in Firebase database
+                let userPosts = DataService.singleton.userRef.child(userId).child("posts")
+                userPosts.updateChildValues([imgId:true],  withCompletionBlock: {
+                    error, postRef in
+                    
+                    if error == nil {
+                        print("spencer: User.imgUrl added into Firebase database")
+                        
+                    } else {
+                        print("spencer: Failed to add User.imgUrl into Firebase database")
+                    }
+                })
+                
+            } else {
+                print("spencer: Failed to add new post into Firebase database")
+            }
+        })
     }
     
     private func dismissKeyboard(){

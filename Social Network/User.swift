@@ -11,6 +11,7 @@ import Foundation
 class User {
     
     private var _id: String!
+    private var _name: String!
     private var _posts: [String]?
     private var _likes: [String]?
     private var _imgUrl: String?
@@ -21,25 +22,24 @@ class User {
         }
     }
     
+    var name: String {
+        return _name
+    }
+    
     var posts: [String]? {
-        get {
-            return _posts
-        }
+        return _posts
     }
     
     var imgUrl: String? {
-        get {
-            return _imgUrl
-        }
+        return _imgUrl
     }
     
     var likes: [String]? {
-        get {
-            return _likes
-        }
+        return _likes
     }
     
-    init(posts: [String], imgUrl: String, likes: [String]) {
+    init(name: String, posts: [String], imgUrl: String, likes: [String]) {
+        _name = name
         _posts = posts
         _imgUrl = imgUrl
         _likes = likes
@@ -53,7 +53,7 @@ class User {
         }
     }
     
-    func setUser(postData: [String:AnyObject]){
+    private func setUser(postData: [String:AnyObject]){
         
         if let posts = postData["posts"] as? [String:Bool] {
             var temp = [String]()
@@ -77,6 +77,10 @@ class User {
         
         if let imgUrl = postData["imgUrl"] as? String {
             _imgUrl = imgUrl
+        }
+        
+        if let name = postData["name"] as? String {
+            _name = name
         }
     }
 }

@@ -36,7 +36,7 @@ extension PostVC {
             let heartImg = getHeartImg(postId: post.id)
             
             // Set all the already known pieces of Information
-            cell.updateUI(postAuthor.id, postTxt: post.caption, likeNumber: post.likes, heartImg: heartImg)
+            cell.updateUI(postAuthor.name, postTxt: post.caption, likeNumber: post.likes, heartImg: heartImg)
             
             // Set the picture of the post in the cell
             setImagInCell(cell: cell, indexPath: indexPath, url: post.imgUrl, imgType: .post)
@@ -52,17 +52,18 @@ extension PostVC {
         return PostCell()
     }
     
+    
+    
     private func getHeartImg(postId: String) -> UIImage {
-        // Does mainUser like this post ?
-        var heartImg: UIImage
-        
-        if let mainUsrLike = mainUser.likes, mainUsrLike.contains(postId) {
-            heartImg = UIImage(named: "filled-heart")!
-        } else {
-            heartImg = UIImage(named: "empty-heart")!
+        return mainUserLikePost(postId) ? UIImage(named: "filled-heart")! : UIImage(named: "empty-heart")!
+    }
+    
+    private func mainUserLikePost(_ postId: String) -> Bool{
+         if let mainUsrLike = mainUser.likes, mainUsrLike.contains(postId) {
+            return true
+         } else {
+            return false
         }
-        
-        return heartImg
     }
     
     private func setImagInCell(cell: PostCell, indexPath: IndexPath, url: String, imgType: ImageType){

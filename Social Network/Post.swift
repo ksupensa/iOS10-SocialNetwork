@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Post {
+class Post: NSObject {
     private var _id: String!
     private var _caption: String!
     private var _likes: Int!

@@ -15,5 +15,6 @@ Creation of a simple Social App
 * UIImagePickerView
   * Edit an image
 * NSCache for images
+* Creation of Delegates
 
 ### All the content(code, resources, etc...) are for educational purpose only under 'fair use'.
