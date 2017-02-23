@@ -17,11 +17,23 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likeImgView: UIImageView!
     @IBOutlet weak var postImgView: UIImageView!
     
-    
+    var delegate: PostCellDelegate! = nil
+    private var id: String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PostCell.likeImgTapped))
+        tap.numberOfTapsRequired = 1
+        
+        likeImgView.addGestureRecognizer(tap)
+    }
+    
+    func likeImgTapped() {
+        if delegate != nil {
+            delegate.likeImgTapped(id)
+        }
     }
     
     func updateUI(_ usrName: String, postTxt: String, likeNumber: Int, heartImg: UIImage, postImg: UIImage = UIImage()) {
@@ -32,6 +44,10 @@ class PostCell: UITableViewCell {
         likeImgView.image = heartImg
         profileImgView.image = UIImage()
         postImgView.image = postImg
+    }
+    
+    func setId(_ postId: String) {
+        id = postId
     }
     
     func setUsrImage(img: UIImage){

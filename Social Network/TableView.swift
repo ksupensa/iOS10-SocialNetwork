@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 // TableView Part
-extension PostVC {
+extension PostVC: PostCellDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,6 +37,8 @@ extension PostVC {
             
             // Set all the already known pieces of Information
             cell.updateUI(postAuthor.name, postTxt: post.caption, likeNumber: post.likes, heartImg: heartImg)
+            cell.setId(post.id)
+            cell.delegate = self
             
             // Set the picture of the post in the cell
             setImagInCell(cell: cell, indexPath: indexPath, url: post.imgUrl, imgType: .post)
@@ -52,13 +54,25 @@ extension PostVC {
         return PostCell()
     }
     
-    
+    // PostCellDelegate function: Required
+    func likeImgTapped(_ postId: String) {
+        
+        let dbMainUser = DataService.singleton.userRef.child(mainUser.id)
+        
+        if mainUserLikePost(postId) {
+            dbMainUser.child("likes").child(postId).removeValue()
+            print("spencer: Unlike picture")
+        } else {
+            dbMainUser.child("likes").updateChildValues([postId:true])
+            print("spencer: like picture")
+        }
+    }
     
     private func getHeartImg(postId: String) -> UIImage {
         return mainUserLikePost(postId) ? UIImage(named: "filled-heart")! : UIImage(named: "empty-heart")!
     }
     
-    private func mainUserLikePost(_ postId: String) -> Bool{
+    private func mainUserLikePost(_ postId: String) -> Bool {
          if let mainUsrLike = mainUser.likes, mainUsrLike.contains(postId) {
             return true
          } else {
