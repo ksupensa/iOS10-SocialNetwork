@@ -9,5 +9,5 @@
 import UIKit
 
 protocol PostCellDelegate {
-    func likeImgTapped(_ postId:String)
+    func likeImgTapped(_ postId: String)
 }

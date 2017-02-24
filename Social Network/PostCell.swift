@@ -36,7 +36,9 @@ class PostCell: UITableViewCell {
         }
     }
     
-    func updateUI(_ usrName: String, postTxt: String, likeNumber: Int, heartImg: UIImage, postImg: UIImage = UIImage()) {
+    func updateUI(_ postId: String, usrName: String, postTxt: String, likeNumber: Int, heartImg: UIImage, postImg: UIImage = UIImage()) {
+        
+        id = postId
         
         usrNameLbl.text = usrName
         postTxtView.text = postTxt
@@ -44,10 +46,6 @@ class PostCell: UITableViewCell {
         likeImgView.image = heartImg
         profileImgView.image = UIImage()
         postImgView.image = postImg
-    }
-    
-    func setId(_ postId: String) {
-        id = postId
     }
     
     func setUsrImage(img: UIImage){

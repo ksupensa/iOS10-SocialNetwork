@@ -36,8 +36,7 @@ extension PostVC: PostCellDelegate {
             let heartImg = getHeartImg(postId: post.id)
             
             // Set all the already known pieces of Information
-            cell.updateUI(postAuthor.name, postTxt: post.caption, likeNumber: post.likes, heartImg: heartImg)
-            cell.setId(post.id)
+            cell.updateUI(post.id, usrName: postAuthor.name, postTxt: post.caption, likeNumber: post.likes, heartImg: heartImg)
             cell.delegate = self
             
             // Set the picture of the post in the cell
@@ -57,14 +56,38 @@ extension PostVC: PostCellDelegate {
     // PostCellDelegate function: Required
     func likeImgTapped(_ postId: String) {
         
-        let dbMainUser = DataService.singleton.userRef.child(mainUser.id)
+        var nbLikes = 0
+        
+        let dbMainUserLikes = DataService.singleton.userRef.child(mainUser.id).child("likes")
+        let dbPostLikes = DataService.singleton.postRef.child(postId)
         
         if mainUserLikePost(postId) {
-            dbMainUser.child("likes").child(postId).removeValue()
+            dbMainUserLikes.child(postId).removeValue()
+            nbLikes = -1
             print("spencer: Unlike picture")
         } else {
-            dbMainUser.child("likes").updateChildValues([postId:true])
+            dbMainUserLikes.updateChildValues([postId:true])
+            nbLikes = 1
             print("spencer: like picture")
+        }
+        
+        dbPostLikes.runTransactionBlock {
+            (data) -> FIRTransactionResult in
+            
+            if var post = data.value as? [String:AnyObject]{
+                var likecount = post["likes"] as? Int ?? 0
+                
+                // Modify the number of likes accordingly
+                likecount += nbLikes
+                // Check it is positive
+                if likecount < 0 {
+                    likecount = 0
+                }
+                
+                post["likes"] = likecount as AnyObject?
+                data.value = post
+            }
+            return FIRTransactionResult.success(withValue: data)
         }
     }
     
@@ -92,10 +115,8 @@ extension PostVC: PostCellDelegate {
             case .user:
                 cell.setUsrImage(img: img)
             }
-            //print("spencer: Cache used to set image")
         } else {
             // Download images if not
-            //print("spencer: Downloading image")
             downloadImg(indexPath: indexPath, imgUrl: url, imgType: imgType)
         }
     }
@@ -120,7 +141,6 @@ extension PostVC: PostCellDelegate {
                             
                             // Put image in cache
                             cache.setObject(img, forKey: url as NSString)
-                            //print("spencer: Downloaded Image put in Cache")
                         }
                     }
                 } else {
