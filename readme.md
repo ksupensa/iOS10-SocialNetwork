@@ -16,5 +16,6 @@ Creation of a simple Social App
   * Edit an image
 * NSCache for images
 * Creation of Delegates
+* Closures
 
 ### All the content(code, resources, etc...) are for educational purpose only under 'fair use'.

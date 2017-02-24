@@ -23,6 +23,9 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     internal var allPosts = [Post]()
     internal var users = [User]()
     
+    // Temporary to make people see all posts
+    internal let seeAllPosts = true
+    
     // Check if default image for adding post
     internal var isDefaultCameraImg = true
     
@@ -80,8 +83,12 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             if let userPosts = self.mainUser.posts {
                 
                 for post in self.allPosts {
-                    if userPosts.contains(post.id) {
-                       self.posts.append(post)
+                    if seeAllPosts {
+                        self.posts.append(post)
+                    } else {
+                        if userPosts.contains(post.id) {
+                            self.posts.append(post)
+                        }
                     }
                 }
             }
@@ -97,7 +104,7 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             self.allPosts = []
             
             // Check if mainUser can access at least one post
-            if let userPost = self.mainUser.posts {
+            if let userPosts = self.mainUser.posts {
                 for data in snaps {
                     if let postContent = data.value as? [String:AnyObject] {
                         let id = data.key
@@ -106,9 +113,13 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                         let post = Post(id: id, postData: postContent)
                         self.allPosts.append(post)
                         
-                        // If post not for MainUser go to next one
-                        if userPost.contains(id){
+                        if seeAllPosts {
                             self.posts.append(post)
+                        } else {
+                            // If post not for MainUser go to next one
+                            if userPosts.contains(id) {
+                                self.posts.append(post)
+                            }
                         }
                     }
                 }
@@ -191,10 +202,10 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     private func postImgToFirebaseDB(url: String, description: String, userId: String, imgId: String) {
         
         var postAttributes = [String:AnyObject]()
-        postAttributes["imgUrl"] = url as AnyObject?
-        postAttributes["caption"] = description as AnyObject?
-        postAttributes["senderId"] = userId as AnyObject?
-        postAttributes["likes"] = 0 as AnyObject?
+        postAttributes[IMG_URL] = url as AnyObject?
+        postAttributes[CAPTION] = description as AnyObject?
+        postAttributes[SENDER] = userId as AnyObject?
+        postAttributes[LIKE] = 0 as AnyObject?
         
         //Update Post object in Firebase database
         DataService.singleton.postRef.child(imgId).updateChildValues(postAttributes, withCompletionBlock: {
@@ -204,7 +215,7 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 print("spencer: New post added into Firebase database")
                 
                 //Update User object in Firebase database
-                let userPosts = DataService.singleton.userRef.child(userId).child("posts")
+                let userPosts = DataService.singleton.userRef.child(userId).child(POST)
                 userPosts.updateChildValues([imgId:true],  withCompletionBlock: {
                     error, postRef in
                     

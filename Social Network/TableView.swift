@@ -58,7 +58,7 @@ extension PostVC: PostCellDelegate {
         
         var nbLikes = 0
         
-        let dbMainUserLikes = DataService.singleton.userRef.child(mainUser.id).child("likes")
+        let dbMainUserLikes = DataService.singleton.userRef.child(mainUser.id).child(LIKE)
         let dbPostLikes = DataService.singleton.postRef.child(postId)
         
         if mainUserLikePost(postId) {
@@ -75,7 +75,7 @@ extension PostVC: PostCellDelegate {
             (data) -> FIRTransactionResult in
             
             if var post = data.value as? [String:AnyObject]{
-                var likecount = post["likes"] as? Int ?? 0
+                var likecount = post[LIKE] as? Int ?? 0
                 
                 // Modify the number of likes accordingly
                 likecount += nbLikes
@@ -84,7 +84,7 @@ extension PostVC: PostCellDelegate {
                     likecount = 0
                 }
                 
-                post["likes"] = likecount as AnyObject?
+                post[LIKE] = likecount as AnyObject?
                 data.value = post
             }
             return FIRTransactionResult.success(withValue: data)

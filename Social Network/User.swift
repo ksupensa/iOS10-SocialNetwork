@@ -55,7 +55,7 @@ class User {
     
     private func setUser(postData: [String:AnyObject]){
         
-        if let posts = postData["posts"] as? [String:Bool] {
+        if let posts = postData[POST] as? [String:Bool] {
             var temp = [String]()
             
             for (key,_) in posts {
@@ -65,7 +65,7 @@ class User {
             _posts = temp
         }
         
-        if let likes = postData["likes"] as? [String:Bool] {
+        if let likes = postData[LIKE] as? [String:Bool] {
             var temp = [String]()
             
             for (key,_) in likes {
@@ -75,11 +75,11 @@ class User {
             _likes = temp
         }
         
-        if let imgUrl = postData["imgUrl"] as? String {
+        if let imgUrl = postData[IMG_URL] as? String {
             _imgUrl = imgUrl
         }
         
-        if let name = postData["name"] as? String {
+        if let name = postData[NAME] as? String {
             _name = name
         }
     }

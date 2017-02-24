@@ -53,19 +53,19 @@ class Post: NSObject {
         
         _id = id
         
-        if let senderId = postData["senderId"] as? String {
+        if let senderId = postData[SENDER] as? String {
             _senderId = senderId
         }
         
-        if let caption = postData["caption"] as? String {
+        if let caption = postData[CAPTION] as? String {
             _caption = caption
         }
         
-        if let imgUrl = postData["imgUrl"] as? String {
+        if let imgUrl = postData[IMG_URL] as? String {
             _imgUrl = imgUrl
         }
         
-        if let likes = postData["likes"] as? Int {
+        if let likes = postData[LIKE] as? Int {
             _likes = likes
         }
     }

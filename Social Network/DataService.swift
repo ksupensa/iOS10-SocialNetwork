@@ -15,10 +15,10 @@ class DataService {
     // Cache for images
     var imgCache: NSCache<NSString, UIImage> = NSCache()
     
-    private let _POST_REF = DB_REF.child("posts")
-    private let _USER_REF = DB_REF.child("users")
-    private let _POST_STR_REF = STORAGE_REF.child("post-img")
-    private let _USER_STR_REF = STORAGE_REF.child("user-img")
+    private let _POST_REF = DB_REF.child(POST)
+    private let _USER_REF = DB_REF.child(USER)
+    private let _POST_STR_REF = STORAGE_REF.child(POST_IMG)
+    private let _USER_STR_REF = STORAGE_REF.child(USER_IMG)
     
     var dbRef: FIRDatabaseReference {
         return DB_REF
