@@ -56,6 +56,10 @@ class PostVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         })
     }
     
+    @IBAction func mainViewTapped(_ sender: UITapGestureRecognizer) {
+        dismissKeyboard()
+    }
+    
     private func observeUsers(snapshot: FIRDataSnapshot){
         if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
             // Clear older users
