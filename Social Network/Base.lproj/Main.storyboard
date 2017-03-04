@@ -62,7 +62,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LJF-Vo-9vo">
-                                <rect key="frame" x="40" y="129" width="240" height="360"/>
+                                <rect key="frame" x="40" y="132.5" width="240" height="353.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="WaS-oA-rb3">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="210"/>
@@ -105,7 +105,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uhF-BS-XTH">
-                                        <rect key="frame" x="0.0" y="243.5" width="240" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="243.5" width="240" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5HK-nM-osw" customClass="CustomTF" customModule="Social_Network" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
@@ -120,7 +120,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="So2-zp-rls" customClass="CustomTF" customModule="Social_Network" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="43.5" width="240" height="30"/>
+                                                <rect key="frame" x="0.0" y="40" width="240" height="30"/>
                                                 <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="0.87" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -132,7 +132,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6z-yo-O6a" customClass="CustomBtn" customModule="Social_Network" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="86.5" width="240" height="30"/>
+                                                <rect key="frame" x="0.0" y="80" width="240" height="30"/>
                                                 <color key="backgroundColor" red="0.8666666666666667" green="0.17254901960784313" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="73S-la-3f5"/>
@@ -153,7 +153,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="8cK-Nj-OOd"/>
-                                    <constraint firstAttribute="height" constant="360" id="v4B-i2-9Zn"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -602,6 +601,10 @@
                     </view>
                     <connections>
                         <outlet property="bottomLayoutConstraint" destination="yF4-ym-FBz" id="Fe0-Zp-UMn"/>
+                        <outlet property="profileImg" destination="3t2-HY-dQo" id="wAF-QI-5Yw"/>
+                        <outlet property="profileImgHeight" destination="rf6-Ua-hvg" id="cTN-CN-DaD"/>
+                        <outlet property="profileImgWidth" destination="Qof-md-B8P" id="C8u-iK-tCQ"/>
+                        <outlet property="usrNameTxtField" destination="b2x-TJ-kgk" id="6pN-XS-hHg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="35r-6t-XdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -610,7 +613,7 @@
                         <action selector="mainViewTapped:" destination="zTn-eC-QdY" id="JrD-bq-SiQ"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="uCm-JU-zTQ" userLabel="profilePicture">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="uCm-JU-zTQ" userLabel="profilePicture">
                     <connections>
                         <action selector="profilePictureTapped:" destination="zTn-eC-QdY" id="rgx-3B-TDN"/>
                     </connections>

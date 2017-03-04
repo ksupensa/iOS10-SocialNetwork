@@ -27,6 +27,14 @@ class LoginVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //
+    }
+    
     // Calls this function when the tap is recognized
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
