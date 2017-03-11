@@ -17,10 +17,9 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordField: CustomTF!
     
     @IBOutlet weak var bodyViewBottomLC: NSLayoutConstraint!
-    
-    @IBOutlet weak var fbBtnHeightLC: NSLayoutConstraint!
-    @IBOutlet weak var orLbl: UILabel!
-    @IBOutlet weak var selectionLbl: UILabel!
+    @IBOutlet weak var fbHeightLC: NSLayoutConstraint!
+    @IBOutlet weak var titleHeightLC: NSLayoutConstraint!
+    @IBOutlet weak var orHeightLC: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,21 +42,24 @@ class LoginVC: UIViewController {
     }
     
     func keyboardShowing(_ notification: NSNotification){
-        fbBtnHeightLC.constant = 0
-        selectionLbl.isHidden = true
-        orLbl.isHidden = true
         
-        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25) {
+            self.fbHeightLC.constant = 0
+            self.titleHeightLC.constant = 0
+            self.orHeightLC.constant = 0
+            self.view.updateConstraints()
+        }
         
         keyboardAppearance(notification)
     }
     
     func keyboardHiding(_ notification: NSNotification){
-        fbBtnHeightLC.constant = 100
-        selectionLbl.isHidden = false
-        orLbl.isHidden = false
-        
-        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.25) {
+            self.fbHeightLC.constant = 100
+            self.titleHeightLC.constant = 22
+            self.orHeightLC.constant = 22
+            self.view.updateConstraints()
+        }
         
         keyboardAppearance(notification)
     }
@@ -72,7 +74,7 @@ class LoginVC: UIViewController {
         bodyViewBottomLC.constant = view.bounds.maxY - convertedKeyboardEndFrame.minY
         
         // Update HeaderView
-        //headerView.isHidden = !headerView.isHidden
+        // headerView.isHidden = !headerView.isHidden
         
         let rawAnimationCurve = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).intValue
         let viewAnimationCurve = UIViewAnimationCurve(rawValue: rawAnimationCurve)!
@@ -86,8 +88,8 @@ class LoginVC: UIViewController {
     }
     
     // Calls this function when the tap is recognized
-    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // Dismiss the keyboard
         dismissKeyBoard()
     }
     
